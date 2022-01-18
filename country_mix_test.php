@@ -3,8 +3,18 @@ $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 2. Kwale. – Salim Mvurya – Jubilee";
 
 function kenyanGovernors($county_data){
-    $array =  preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', $county_data);
-    echo($array) ;
+    // $array =  preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', $county_data);
+    echo($county_data) ;
+    // $stringLen = strlen($array);
+    // for($i = 0; $i < $stringLen; $i++){
+    //     $char = substr($stringLen, $i, 1);
+    //     if(!is_numeric($char)){
+    //         echo($stringLen);
+    //         break;
+    //     }
+    // }
+    
+
     // $round = count($county_data);
     
     // for($n = 0; $n < $county_data; $n++ ){

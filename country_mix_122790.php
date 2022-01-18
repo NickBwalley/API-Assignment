@@ -54,7 +54,9 @@ $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 // Your code starts here
 
 function kenyanGovernors($county_data){
-    
+    echo ($county_data);
 }
+
+kenyanGovernors($county_data);
 
 ?>
