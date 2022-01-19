@@ -2,54 +2,23 @@
 $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 2. Kwale. – Salim Mvurya – Jubilee";
 
-function kenyanGovernors($county_data){
-    // $array =  preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', $county_data);
-    echo($county_data) ;
-    // $stringLen = strlen($array);
-    // for($i = 0; $i < $stringLen; $i++){
-    //     $char = substr($stringLen, $i, 1);
-    //     if(!is_numeric($char)){
-    //         echo($stringLen);
-    //         break;
-    //     }
-    // }
-    
-
-    // $round = count($county_data);
-    
-    // for($n = 0; $n < $county_data; $n++ ){
-    //     echo($county_data[$n]);
-    //     echo("<br>");
-    // }
-
-
-    /*$myNewArr1 = preg_split("/\,/", $county_data);
-    print_r($myNewArr1);
-    $array2 = preg_split("/\./", $myNewArr1);
-    print_r($array2);*/
-
-    
-    // if($myNewArray = explode(",", $county_data)){
-    //     echo("<br>");
-    // }
-    // $myNewArray2 = implode($myNewArray);
-    // echo($myNewArray2);
-
-    // print_r($myNewArray);
-
+function kenyanGovernors($county_data){    
+    $data1 = preg_replace('/[^a-zA-Z0-9_ -]/s',' ',$county_data);
+    echo $data1;
+    $arr1 = explode(" ", $data1);
+    print_r(array_filter(array_map("trim",$arr1)));
 };
 
-kenyanGovernors($county_data);
+function sanitizer($county_data){
+    $arr = explode(",", $county_data);
+    $str = "";
+    foreach(array_chunk($arr, 1) as $sub){
+        $str .= trim(implode(",", preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', $sub))) . "\n";
+    }
+    echo($str);
+}
 
-// echo("<br><br>");
-
-// $str = "hello friend";
-
-// $arr1 = str_split($str);
-// $arr2 = str_split($str, 3);
-
-// print_r($arr1);
-// print_r($arr2);
-
+// kenyanGovernors($county_data);
+sanitizer($county_data);
 
 ?>

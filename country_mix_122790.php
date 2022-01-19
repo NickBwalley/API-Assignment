@@ -53,10 +53,15 @@ $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 
 // Your code starts here
 
-function kenyanGovernors($county_data){
-    echo ($county_data);
+function sanitizer($county_data){
+    $arr = explode(",", $county_data);
+    $str = "";
+    foreach(array_chunk($arr, 1) as $sub){
+        $str .= trim(implode(",", preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', $sub))) . "\n";
+    }
+    echo($str);
 }
 
-kenyanGovernors($county_data);
+sanitizer($county_data);
 
 ?>
