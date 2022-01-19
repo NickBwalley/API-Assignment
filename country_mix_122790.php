@@ -8,7 +8,7 @@ $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 6. Taita-Taveta. – Granton Samboja – WDM K,
 7. Garissa. – Ali Bunow Korane – Jubilee,
 8. Wajir. – Ahmed Ali Muktar – Jubilee,
-9. Mandera. – Ali Ibrahim Roba - Jubilee,
+9. Mandera. – Ali Ibrahim Roba – Jubilee,
 10. Marsabit – Mohamud Mohamed Ali – Jubilee,
 11. Isiolo – Mohamed Abdi Kuti – Independent,
 12. Meru – Kiraitu Murungi – Jubilee,
@@ -45,7 +45,7 @@ $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 43. Homabay. – Cyprian Awiti – ODM,
 44. Migori. – Zachary Okoth Obado – ODM,
 45. Kisii. – James Ongware – ODM,
-46. Nyamira. – Amos Kimwomi Nyaribo - ODM,
+46. Nyamira. – Amos Kimwomi Nyaribo – ODM,
 47. Nairobi. – Ann Kananu – Jubilee";
 
 
@@ -53,15 +53,106 @@ $county_data = "1. Mombasa. – Hassan Ali Joho – ODM,
 
 // Your code starts here
 
-function sanitizer($county_data){
-    $arr = explode(",", $county_data);
-    $str = "";
-    foreach(array_chunk($arr, 1) as $sub){
-        $str .= trim(implode(",", preg_replace('/[^A-Za-z0-9\-\(\) ]/', '', $sub))) . "\n";
-    }
-    echo($str);
-}
+$myDataSet = explode(",",$county_data);
+$lengthOfArray = count($myDataSet);
+$gibberishChar = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9","."," ' ");
 
-sanitizer($county_data);
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment3 - 122790</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+    </a>
+  </div>
+
+
+    </div>
+  </div>
+</nav>
+        <div class="container">
+			<table id="parties" class="table is-bordered">
+          <thead>
+            <tr>
+              <th>County Number</th>
+              <th>Name</th>
+              <th>Governor</th>
+              <th>Party</th>
+              <th>Website</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <?php
+            $n=1;
+
+            for($i = 0; $i < $lengthOfArray; $i++) {
+              $findDataSet = explode(" – ",$myDataSet[$i]);
+              $datalength = count($findDataSet);?>
+            <tr>
+
+              <td><?php echo $n++?></td>
+
+              <td>
+                <?php
+				$gibberishChar = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9","."," ' ");
+				 echo $countyName = str_replace($gibberishChar, "",$findDataSet[0]);
+              ?>
+              </td>
+
+			  <td>
+        <?php
+ echo $findDataSet[1];
+ if(!empty($findDataSet[2] =="ODM")){
+         ?>
+         <!-- <img src="odm.jpg" alt="missing"/> -->
+       <?php }  ?>
+              </td>
+
+              <td><?php
+              if(!empty($findDataSet[2])){
+                if($findDataSet[2] == "WDM K."){
+                  echo "WDM K";
+                }else{
+                  echo $findDataSet[2];
+                }
+              }
+              else {
+                if(strpos($findDataSet[1],"- Jubilee")){
+                  echo "Jubilee";
+
+                }
+                elseif(strpos($findDataSet[1],"- ODM")){
+                    echo "ODM";
+                }
+              }?></td>
+
+              <?php
+                $countyName = str_replace($gibberishChar, "", $findDataSet[0]);
+
+				$gibberishCharLink = array('-'," "," ' ");
+                $link = (str_replace($gibberishCharLink, '', $countyName));?>
+
+        <td><a target="_BLANK"
+            href="http://<?php echo $link?>.go.ke">http://<?php echo $link;?>.go.ke</a></td>
+            </tr>
+            <?php
+              }
+            ?>
+          </tbody>
+        </table>
+		</div>
+</body>
+
+</html>
