@@ -10,10 +10,10 @@ function sanitizer($input){
 
     //@Option 1 
     $name_array = explode(" ", $name);
-    /// var_dump($name_array);
     $first = $name_array[0];
     $second = $name_array[1];
 
+    // Limtded
     $first_letter = substr($second, 0, 1);
     $middle_letter = substr($second, (strlen($second) /2), 1);
     $last_letter = substr($second, -1, 1);
@@ -25,6 +25,15 @@ function sanitizer($input){
     .$middle_letter.
     $last_letter
     );
+
+    // amounts 
+    // ["£100","-1","200","300","-700",678]
+    $amounts = $input[1];
+    // preg_replace - remove non integer values 
+    foreach($amounts as $amout){
+        $amount[] = preg_replace("SOME_FUNNY_STRING_HERE", $amount);
+    }
+
     // $string = "Geselmlchab";
     
     // $getMidChar  = substr($string, (strlen($string) / 2 ), 1);
