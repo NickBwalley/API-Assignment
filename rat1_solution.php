@@ -7,6 +7,7 @@ $input3 = ["name" => "loneIslands proprtieary","amount" => "7568-39-49-37-3000-9
 function sanitizer($input){
 
   $name = $input[0];
+
   //alternate flow
   //$names = explode(" ",$name);
   //$first = $names[0];
